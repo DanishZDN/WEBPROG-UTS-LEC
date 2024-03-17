@@ -1,6 +1,7 @@
 ADMIN TRYOUT : 
 INSERT INTO admin (username, email, password, role, name, address, gender, birthdate, registration_date, verified, can_verify_registration, can_verify_savings, can_list_users)
-VALUES ('admin', 'admin@example.com', 'adminpassword', 'Admin', 'Admin Name', 'Admin Address', 'Male', '1990-01-01', NOW(), TRUE, TRUE, TRUE);
+VALUES ('admin', 'admin@example.com', 'adminpassword', 'Admin', 'Admin Name', 'Admin Address', 'Male', '1990-01-01', NOW(), TRUE, TRUE, TRUE, TRUE);
+
 
 
 username: admin
