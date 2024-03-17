@@ -57,13 +57,14 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrasi</title>
-    <!-- Include CSS kalo perlu -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Include JavaScript kalo perlu -->
+    <!-- Include CSS if needed -->
+    <link rel="stylesheet" href="register.css">
+    <!-- Include JavaScript if needed -->
     <script src="script.js"></script>
 </head>
 <body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: lightblue;">
-    <div class="text-center">
+    <div class="container text-center">
+        <h1 class="title">PUSKESMAS ONLINE</h1>
         <h2>Registrasi</h2>
         <?php if(isset($error) && $error != "") { ?>
             <div style="color: red;"><?php echo $error; ?></div>
@@ -88,7 +89,7 @@ mysqli_close($conn);
                 <option value="female">Perempuan</option>
             </select><br></br>
             <input type="date" name="birthdate" required><br></br>
-            <button type="submit" name="register" value="index.php">Register</button>
+            <button type="submit" name="register">Register</button>
         </form>
     </div>
 </body>
