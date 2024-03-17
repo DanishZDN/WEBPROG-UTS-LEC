@@ -1,8 +1,8 @@
 .container {
-    width: 400px; /* Width of the container */
-    padding: 20px; /* Padding for the content inside the container */
+    width: 350px; /* Width of the container */
+    padding: 45px; /* Padding for the content inside the container */
     background-color: white; /* Background color of the container */
-    border-radius: 10px; /* Border radius to make the container rounded */
+    border-radius: 20px; /* Border radius to make the container rounded */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle look */
 }
 
