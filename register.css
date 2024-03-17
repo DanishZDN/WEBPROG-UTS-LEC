@@ -1,0 +1,42 @@
+.container {
+    width: 400px; /* Width of the container */
+    padding: 20px; /* Padding for the content inside the container */
+    background-color: white; /* Background color of the container */
+    border-radius: 10px; /* Border radius to make the container rounded */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle look */
+}
+
+.title {
+    font-size: 20px; /* Font size for the title */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button,
+select {
+    width: 100%; /* Full width for input fields, button, and select */
+    margin-bottom: 10px; /* Spacing between elements */
+    padding: 10px; /* Padding for input fields and button */
+    border-radius: 5px; /* Border radius to make elements rounded */
+    border: 1px solid #ccc; /* Border to make elements distinct */
+}
+
+button {
+    background-color: #007bff; /* Background color for the button */
+    color: white; /* Text color for the button */
+    cursor: pointer; /* Cursor style */
+}
+
+button:hover {
+    background-color: #0056b3; /* Background color on hover */
+}
+
+a {
+    text-decoration: none; /* Remove underline from links */
+    color: #007bff; /* Text color for links */
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
