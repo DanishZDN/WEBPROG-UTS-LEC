@@ -15,7 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "DELETE FROM users WHERE email = ?";
         $stmt = $kunci->prepare($sql);
         $stmt->execute([$_SESSION['email']]);
-        header("Location: home.php");
+        
+        // Destroy session
+        session_unset();
+        session_destroy();
+        
+        // Redirect to index.php
+        header("Location: index.php");
         exit();
     } else {
         // Form Data
@@ -185,8 +191,8 @@ if ($stmt->rowCount() > 0) {
             <input type="file" id="profile_pic" name="profile_pic">
             <button type="submit">Save Changes</button>
         </form>
-        <form action="home.php" method="POST"><br></br>
-            <input type="submit" name="delete" value="Delete Account" onclick="return confirm('Are you sure you want to delete your account?');">
+        <form action="profile.php" method="POST"><br></br> <!-- Change action to profile.php -->
+            <input type="submit" name="delete" value="Delete Account" onclick="return confirm('Are you sure you want to delete your account?');" action="index.php">
         </form>
     </div>
 </body>
