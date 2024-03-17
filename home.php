@@ -21,15 +21,15 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Ambil nama pengguna dari database
+// Ambil username pengguna dari database
 $email = $_SESSION['email'];
-$sql = "SELECT name FROM users WHERE email = '$email'";
+$sql = "SELECT username FROM users WHERE email = '$email'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // Ambil data nama pengguna
+    // Ambil data username pengguna
     $row = $result->fetch_assoc();
-    $username = $row["name"];
+    $username = $row["username"];
 } else {
     $username = "Pengguna";
 }
@@ -37,6 +37,7 @@ if ($result->num_rows > 0) {
 // Menutup koneksi database
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
