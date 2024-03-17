@@ -63,7 +63,7 @@ mysqli_close($conn);
     <script src="script.js"></script>
 </head>
 <body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: lightblue;">
-    <div class="container text-center">
+    <div class="container">
         <h1 class="title">PUSKESMAS ONLINE</h1>
         <h2>Registrasi</h2>
         <?php if(isset($error) && $error != "") { ?>
@@ -90,6 +90,8 @@ mysqli_close($conn);
             </select><br></br>
             <input type="date" name="birthdate" required><br></br>
             <button type="submit" name="register">Register</button>
+            <a href="index.php"><button type="button">Back</button></a>
+
         </form>
     </div>
 </body>
