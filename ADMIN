@@ -1,0 +1,18 @@
+ADMIN TRYOUT : 
+INSERT INTO admin (username, email, password, role, name, address, gender, birthdate, registration_date, verified, can_verify_registration, can_verify_savings, can_list_users)
+VALUES ('admin', 'admin@example.com', 'adminpassword', 'Admin', 'Admin Name', 'Admin Address', 'Male', '1990-01-01', NOW(), TRUE, TRUE, TRUE);
+
+
+username: admin
+email: admin@example.com
+password: adminpassword (Note: You should always hash passwords for security, this is just a placeholder)
+role: Admin
+name: Admin Name
+address: Admin Address
+gender: Male
+birthdate: 1990-01-01 (or any other birthdate you prefer)
+registration_date: Current date and time (using NOW() function)
+verified: TRUE (assuming this admin account is automatically verified)
+can_verify_registration: TRUE (assuming this admin can verify registrations)
+can_verify_savings: TRUE (assuming this admin can verify savings)
+can_list_users: TRUE (assuming this admin can list users)
