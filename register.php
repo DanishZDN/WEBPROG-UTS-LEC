@@ -88,8 +88,7 @@ mysqli_close($conn);
                 <option value="female">Perempuan</option>
             </select><br></br>
             <input type="date" name="birthdate" required><br></br>
-            <button type="submit" name="register">Register</button>
-            <input type="hidden" name="redirect" value="index.php"></br>
+            <button type="submit" name="register" value="index.php">Register</button>
         </form>
     </div>
 </body>
