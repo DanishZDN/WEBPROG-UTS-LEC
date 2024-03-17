@@ -62,19 +62,21 @@ if(isset($_POST['login'])) {
     <!-- Include JavaScript jika diperlukan -->
     <script src="script.js"></script>
 </head>
-<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: lightblue;">   
-    <div class="text-center"> <!-- Added text-center class to center the content -->
-        <h2>Login</h2> <!-- Removed the class "text-center" from the h2 element -->
-        <?php if(isset($error) && $error != "") { ?>
-            <div style="color: red;"><?php echo $error; ?></div>
-        <?php } ?>
-        <form method="post">
-            <input type="text" name="email" placeholder="Email" required ><br>
-            <input type="password" name="password" placeholder="Password" required><br>
-            <small>Belum punya akun? <a href="register.php">Sign up!</a></small><br> <!-- Added the "belum punya akun? Sign up!" text with a link to register.php -->
-            <button type="submit" name="login">Login</button>
-        </form>
-    </div>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: lightblue;">
+    <div class="container text-center">
+    <h1 class="title">PUSKESMAS ONLINE</h1> <!-- Apply a class for styling -->
+    <h2>Login</h2>
+    <?php if(isset($error) && $error != "") { ?>
+        <div style="color: red;"><?php echo $error; ?></div>
+    <?php } ?>
+    <form method="post">
+        <input type="text" name="email" placeholder="Email" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <small>Belum punya akun? <a href="register.php">Sign up!</a></small><br>
+        <button type="submit" name="login">Login</button>
+    </form>
+</div>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
