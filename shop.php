@@ -126,9 +126,10 @@
     <div class="navbar">
         <a href="home.php">Home</a>
         <a href="shop.php">Shop</a>
-        <a href="pemnayran.php">Pembayaran</a>
+        <a href="pembayaran.php">Pembayaran</a>
         <a href="history.php">History</a>
         <a href="profile.php">Profile</a>
+        <a href="index.php">Logout</a> 
     </div>
 
     <div class="container">
@@ -179,7 +180,7 @@
     <script>
         function goToPayment() {
             // Redirect to payment.php
-            window.location.href = "payment.php";
+            window.location.href = "pembayaran.php";
         }
         
         function addToCart(name, price) {
