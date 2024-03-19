@@ -190,8 +190,11 @@ if ($stmt->rowCount() > 0) {
             <label for="profile_pic">Upload Profile Picture:</label>
             <input type="file" id="profile_pic" name="profile_pic">
             <button type="submit">Save Changes</button>
-        </form>
-        <form action="profile.php" method="POST"><br></br> <!-- Change action to profile.php -->
+        </form><br> </br>
+        <form action="home.php" method="GET">
+            <button type="submit">Back to Home</button>
+        </form><br> </br>
+        <form action="profile.php" method="POST">
             <input type="submit" name="delete" value="Delete Account" onclick="return confirm('Are you sure you want to delete your account?');" action="index.php">
         </form>
     </div>
