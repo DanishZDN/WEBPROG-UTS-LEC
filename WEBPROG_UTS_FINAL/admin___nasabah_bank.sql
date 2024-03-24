@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2024 at 02:40 PM
+-- Generation Time: Mar 24, 2024 at 06:11 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,6 +43,14 @@ CREATE TABLE `admin` (
   `can_verify_savings` tinyint(1) DEFAULT 1,
   `can_list_users` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `username`, `email`, `password`, `role`, `name`, `address`, `gender`, `birthdate`, `registration_date`, `verified`, `can_verify_registration`, `can_verify_savings`, `can_list_users`) VALUES
+(1, 'admin', 'admin@example.com', 'Admin', 'Admin', 'Admin Name', 'Admin Address', 'Male', '1990-01-01', '2024-03-17 21:18:50', 1, 1, 1, 1),
+(2, 'test', 'test@admin.com', 'admin', 'Admin', 'test', 'test', 'Male', '2024-03-05', '2024-03-13 22:00:15', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -91,8 +99,27 @@ CREATE TABLE `transactions` (
   `transaction_date` date DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
   `proof_path` varchar(255) DEFAULT NULL,
-  `status` enum('pending','verified','rejected') DEFAULT 'pending'
+  `status` enum('pending','verified','rejected') DEFAULT 'pending',
+  `verified` enum('pending','verified','rejected') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`transaction_id`, `user_id`, `category`, `transaction_date`, `amount`, `proof_path`, `status`, `verified`) VALUES
+(1, NULL, 'sukarela', '2024-03-01', 123.00, 'Screenshot 2023-12-15 203545.png', 'verified', 'pending'),
+(2, NULL, 'wajib', '2024-03-21', 5221.00, 'Screenshot 2023-12-14 132059.png', 'verified', 'pending'),
+(3, NULL, 'wajib', '2024-03-13', 12314.00, 'Screenshot 2023-12-17 200606.png', 'verified', 'pending'),
+(4, NULL, 'wajib', '2024-02-28', 123.00, 'Screenshot 2023-12-15 205919.png', 'verified', 'pending'),
+(5, NULL, 'sukarela', '2024-02-28', 1242352.00, 'Screenshot 2024-02-28 105129.png', 'verified', 'pending'),
+(7, NULL, 'sukarela', '2024-02-28', 1242352.00, 'Screenshot 2024-02-28 105129.png', 'rejected', 'pending'),
+(8, NULL, 'sukarela', '2024-03-01', 200000.00, 'Screenshot 2023-12-15 203545.png', 'rejected', 'pending'),
+(9, NULL, 'sukarela', '2024-02-27', 200000.00, 'Screenshot 2023-12-15 195714.png', 'rejected', 'pending'),
+(10, NULL, 'sukarela', '2024-03-09', 2000000.00, 'Screenshot 2023-12-14 140953.png', 'rejected', 'pending'),
+(11, NULL, 'wajib', '2024-03-08', 3000000.00, 'Screenshot 2023-12-15 195714.png', 'verified', 'pending'),
+(12, NULL, 'sukarela', '2024-03-05', 800000.00, 'Screenshot 2023-12-18 135548.png', 'verified', 'pending'),
+(13, NULL, 'wajib', '2024-02-27', 5100000.00, 'Screenshot 2023-12-15 195714.png', 'pending', 'pending');
 
 -- --------------------------------------------------------
 
@@ -105,6 +132,7 @@ CREATE TABLE `users` (
   `username` varchar(50) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `photo_path` varchar(255) DEFAULT NULL,
   `role` enum('admin','nasabah') DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
@@ -118,9 +146,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`, `name`, `address`, `gender`, `birthdate`, `registration_date`, `verified`) VALUES
-(2, 'FaizHS', 'faizcool@gmail.com', 'Faiz', '', 'Faiz hasanudin', 'Faiz', 'male', '2024-02-26', '2024-03-17 00:00:00', 0),
-(3, 'Davergamer', 'dave@gamer.com', 'Dave', '', 'Dave simuthan', 'ddave', 'male', '2024-02-27', '2024-03-17 00:00:00', 0);
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `photo_path`, `role`, `name`, `address`, `gender`, `birthdate`, `registration_date`, `verified`) VALUES
+(2, 'FaizSH', 'faizcool@gmail.com', 'Faiz', 'uploads/Screenshot 2024-02-18 180930.png', '', 'fex', 'Faiz', 'male', '2024-02-26', '2024-03-17 00:00:00', 1),
+(3, 'Davergamer', 'dave@gamer.com', 'dave', 'uploads/New Project (1).png', '', 'Dave simuthan', 'ddave', 'male', '2024-02-27', '2024-03-17 00:00:00', 1),
+(7, 'Jeffry', 'jeffry@jeff.com', 'jeff', 'uploads/New Project (1).png', '', 'Jeff', 'homeless', 'female', '2024-01-17', '2024-03-17 00:00:00', 1),
+(9, 'edrtg', 'idk@idk.com', 'idk', NULL, '', 'idk', 'Faiz', 'female', '2024-02-27', '2024-03-23 00:00:00', 1),
+(10, 'qwerty', 'qwerty@email.com', 'qwerty', NULL, '', 'qwere', 'homeless', 'male', '2024-03-13', '2024-03-24 00:00:00', 0);
 
 --
 -- Indexes for dumped tables
@@ -176,7 +207,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `captcha`
@@ -188,13 +219,13 @@ ALTER TABLE `captcha`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
