@@ -1,0 +1,111 @@
+<?php
+session_start();
+
+$error = "";
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "admin & nasabah bank";
+
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if(isset($_POST['register'])) {
+    if($_POST['captcha'] != $_SESSION['captcha']) {
+        $error = "Captcha salah!";
+    } else {
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $role = $_POST['role'];
+        $name = $_POST['name'];
+        $address = $_POST['address'];
+        $gender = $_POST['gender'];
+        $birthdate = $_POST['birthdate'];
+        $registration_date = date('Y-m-d');
+        $verified = 0;
+
+        if(empty($username) || empty($email) || empty($password) || empty($role) || empty($name) || empty($address) || empty($gender) || empty($birthdate)) {
+            $error = "Semua field harus diisi.";
+        } elseif($_POST['password'] != $_POST['confirm_password']) {
+            $error = "Password dan konfirmasi password tidak sesuai.";
+        } else {
+            $check_sql = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
+            $check_result = mysqli_query($conn, $check_sql);
+            if(mysqli_num_rows($check_result) > 0) {
+                $error = "ERROR: Username or email already exists.";
+            } else {
+                $sql = "INSERT INTO users (username, email, password, role, name, address, gender, birthdate, registration_date, verified) VALUES ('$username', '$email', '$password', '$role', '$name', '$address', '$gender', '$birthdate', '$registration_date', '$verified')";
+
+                if (mysqli_query($conn, $sql)) {
+                    $success_msg = "Registrasi berhasil. Silakan tunggu verifikasi dari admin.";
+                } else {
+                    $error = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                }
+            }
+        }
+    }
+}
+
+mysqli_close($conn);
+
+function generateCaptcha($length = 6) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $captcha = '';
+    for ($i = 0; $i < $length; $i++) {
+        $captcha .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $captcha;
+}
+
+$captcha = generateCaptcha();
+$_SESSION['captcha'] = $captcha;
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi</title>
+    <link rel="stylesheet" href="register.css">
+    <script src="script.js"></script>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: lightblue;">
+    <div class="container">
+        <h1 class="title">PUSKESMAS ONLINE</h1>
+        <h2>Registrasi</h2>
+        <?php if(isset($error) && $error != "") { ?>
+            <div style="color: red;"><?php echo $error; ?></div>
+        <?php } ?>
+        <?php if(isset($success_msg) && $success_msg != "") { ?>
+            <?php if(isset($error) && $error != "") { ?>
+                <div style="color: red;"><?php echo $error; ?></div>
+            <?php } else { ?>
+                <div style="color: green;"><?php echo $success_msg; ?></div>
+            <?php } ?>
+        <?php } ?>
+        <form method="post" enctype="multipart/form-data">
+            <input type="text" name="username" placeholder="Username" required><br><br>
+            <input type="email" name="email" placeholder="Email" required><br><br>
+            <input type="password" name="password" placeholder="Password" required><br><br>
+            <input type="password" name="confirm_password" placeholder="Konfirmasi Password" required><br><br>
+            <input type="text" name="role" placeholder="Kerjaan" required><br><br>
+            <input type="text" name="name" placeholder="Nama" required><br><br>
+            <input type="text" name="address" placeholder="Alamat" required><br><br>
+            <select name="gender">
+                <option value="male">Laki-laki</option>
+                <option value="female">Perempuan</option>
+            </select><br><br>
+            <input type="date" name="birthdate" required><br><br>
+            <input type="text" name="captcha" placeholder="Enter Captcha: <?php echo $captcha; ?>" required><br><br>
+            <button type="submit" name="register">Register</button>
+            <a href="index.php"><button type="button">Back</button></a>
+        </form>
+    </div>
+</body>
+</html>
